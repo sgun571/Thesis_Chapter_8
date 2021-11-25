@@ -1,0 +1,68 @@
+
+Characteristics
+__________________________
+
+
+LOGGER : CouchbaseLogger
+    Used to log error messages and other information.
+
+
+response Header : HttpResponse 
+    Contains the current pending response header if set.
+
+response Content : ByteBuf
+    Contains the accumulating buffer for the response content.
+
+
+query Row Observable : ReplaySubject
+    Represents a observable that sends result chunks.
+
+
+query Error Observable : ReplaySubject
+    Represents an observable that sends errors and warnings if any during query execution.
+
+
+query Status Observable : ReplaySubject
+    Represent an observable that has the final execution status of the query, once all result rows and/or errors/warnings have been sent.
+
+
+query Info Observable : ReplaySubject 
+    Represents a observable containing metrics on a terminated query.
+
+
+query Parsing State : Number
+    Represents the current query parsing state.
+
+
+
+
+Behaviours
+________________________________________
+
+
+bytes Before
+    Finds the bytes before a given character in the response content.
+
+
+handle Generic Query Response
+        Base method to handle the response for the generic query request. It waits for the first few bytes on the actual response to determine if an error is raised or if a successful response can be expected. The actual error and/or chunk parsing is deferred to other parts of this handler.
+
+
+parse Query Response
+    Generic dispatch method to parse the query response chunks. Depending on the state the parser is currently in, several different sub-methods are called which do the actual handling. 
+
+
+transition To Next Token
+    Peek the next token, returning the QUERY_STATE corresponding to it and placing the readerIndex just after the token's ':'. Must be at the end of the previous token.
+
+
+
+find End
+    Finds the end of a token.
+
+
+parse Query Signature
+    Parses the query signature.
+
+parse Query Rows
+    Parses the query rows from the content stream as long as there is data to be found.

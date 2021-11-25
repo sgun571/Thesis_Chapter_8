@@ -1,0 +1,30 @@
+
+Characteristics
+__________________________
+
+
+First Name : Text
+    Customer billing first name.
+
+
+Last Name : Text 
+    Customer billing last name.
+
+Address : Text
+    Customer billing address.
+
+
+City : Text
+    Customer billing city.
+
+
+State Province : Text
+    Customer billing state / province (if no 2 letter codes, example: North estate).
+
+
+Zone : Text
+    Customer billing state / province (2 letter code CA, ON...).
+
+
+Country : Text 
+    Customer billing country code (2 letter code US, CA, UK, IT, IN, CN...).
